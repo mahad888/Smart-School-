@@ -18,8 +18,7 @@ const Homepage = () => {
                             Welcome to
                             <br />
                             Smart School
-                            <br />
-                            System
+                        
                         </StyledTitle>
                         <StyledText>
                             Streamline school management, class organization, and add students and faculty.
