@@ -1,0 +1,72 @@
+version: 'v2.26.1-desktop.1'
+services:
+
+  web:
+    container_name: frontend
+    build: ./frontend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app
+    
+  api: 
+    container_name: backend
+    build: ./backend
+    ports:
+      - 4000:4000
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/school
+    volumes:
+      - ./backend:/app
+
+
+  db:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - school:/data/db
+
+volumes:
+  school:
+
+# version: '3.8'
+
+# services:
+#   mongodb:
+#     image: mongo:latest
+#     container_name: mongodb
+#     ports:
+#       - "27017:27017"
+#     volumes:
+#       - mongo-data:/data/db
+
+#   backend:
+#     build:
+#       context: ./backend
+#     container_name: backend
+#     ports:
+#       - "5000:5000"
+#     depends_on:
+#       - mongodb
+#     environment:
+#       - MONGO_URI=mongodb://mongodb:27017/mern-app
+#     volumes:
+#       - ./backend:/usr/src/app
+#     command: ["npm", "start"]
+
+#   frontend:
+#     build:
+#       context: ./frontend
+#     container_name: frontend
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - backend
+    # volumes:
+    #   - ./frontend:/usr/src/app
+#     command: ["npm", "start"]
+
+# volumes:
+#   mongo-data:
